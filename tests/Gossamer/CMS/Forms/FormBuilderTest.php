@@ -14,6 +14,27 @@ use tests\Gossamer\CMS\Models\TestModel;
  */
 class FormBuilderTest extends \tests\BaseTest{
     
+    public function testEmailTextBox() {
+        $builder = new FormBuilder($this->getLogger());
+        $results = array('firstname' => 'VALIDATION_INVALID_EMAIL',
+             'firstname_value' => 'invaliddavemmyemail.com',
+            'test' =>'SOME_FAIL_ON_TEST',
+            'test_value' => 'some fail value');
+        $builder->addValidationResults($results);
+        
+        $control = $builder->add('test2', 'radio', array('value' => 'dave meikle'))
+                ->add('test1','text', array('value' => 'dave meikle', 'id' => 'test1'))
+                ->add('email', 'email', array('id' => 'firstname_id'))
+                ->add('lastname', 'text');
+        
+        $form = $control->getForm();
+        
+        $this->assertTrue(is_array($form));
+        $this->assertTrue(array_key_exists('email', $form));
+        $this->assertContains('email', $form['email']);
+       
+    }
+    
     public function testAddTextBox() {
         $builder = new FormBuilder($this->getLogger());
         $results = array('firstname' => 'VALIDATION_INVALID_EMAIL',

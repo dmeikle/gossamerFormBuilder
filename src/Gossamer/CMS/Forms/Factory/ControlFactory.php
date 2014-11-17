@@ -19,7 +19,8 @@ class ControlFactory {
         'textarea' => 'TextArea',
         'submit' => 'SubmitButton',
         'button' => 'Button',
-        'cancel' => 'CancelButton'
+        'cancel' => 'CancelButton',
+        'email' => 'EmailTextBox'
     );
     
     public function getControl($controlName) {
