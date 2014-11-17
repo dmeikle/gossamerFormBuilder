@@ -25,7 +25,7 @@ class FormBuilder {
         $this->form = array();
     }
     
-    public function addValidationResults(array $results) {
+    public function addValidationResults(array $results = null) {
         $this->results = $results;
     }
     

@@ -21,24 +21,24 @@ class RadioButtonControl extends AbstractControl {
         
         return $textBox;
     }
-
-    protected function buildParams($fieldName, &$control, array $params = null, &$validationResults) {
-        if(is_null($params)) {
-            $control = str_replace('|PARAMS|', '', $control);
-            
-            return;
-        }
-        
-        $paramList = '';
-        $value = '';
-        foreach($params as $key => $param) {
-            if($key == 'value') {
-                $value = $param;
-            } else {
-                $paramList .= " $key=\"$param\"";
-            }            
-        }
-        
-        $control = str_replace('|PARAMS|', $paramList, $control) . $value;
-    }
+//
+//    protected function buildParams($fieldName, &$control, array $params = null, &$validationResults) {
+//        if(is_null($params)) {
+//            $control = str_replace('|PARAMS|', '', $control);
+//            
+//            return;
+//        }
+//        
+//        $paramList = '';
+//        $value = '';
+//        foreach($params as $key => $param) {
+//            if($key == 'value') {
+//                $value = $param;
+//            } else {
+//                $paramList .= " $key=\"$param\"";
+//            }            
+//        }
+//        
+//        $control = str_replace('|PARAMS|', $paramList, $control) . $value;
+//    }
 }

@@ -16,7 +16,10 @@ class ControlFactory {
         'radio' => 'RadioButton',
         'check' => 'CheckBox',
         'hidden' => 'HiddenInput',
-        'textarea' => 'TextArea'
+        'textarea' => 'TextArea',
+        'submit' => 'SubmitButton',
+        'button' => 'Button',
+        'cancel' => 'CancelButton'
     );
     
     public function getControl($controlName) {

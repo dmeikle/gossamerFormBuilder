@@ -12,7 +12,7 @@ use Gossamer\CMS\Forms\Controls\AbstractControl;
  */
 class TextBoxControl extends AbstractControl {
     
-    private $textBox = '<input type="text" name="|NAME|"|PARAMS| />';
+    protected $textBox = '<input type="text" name="|NAME|"|PARAMS| />';
     
     public function build($name, array $params = null, &$results = null) {
         
