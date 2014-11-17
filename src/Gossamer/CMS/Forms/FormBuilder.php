@@ -4,6 +4,8 @@ namespace Gossamer\CMS\Forms;
 
 use Monolog\Logger;
 use Gossamer\CMS\Forms\Factory\ControlFactory;
+use Gossamer\CMS\Forms\FormBuilderInterface;
+
 
 /**
  * Description of FormBuilder
@@ -20,8 +22,14 @@ class FormBuilder {
     
     private $results = null;
     
-    public function __construct(Logger $logger) {
+    private $formWrapperName = null;
+    
+    public function __construct(Logger $logger, FormBuilderInterface $model = null) {
         $this->logger = $logger;
+        if(!is_null($model)) {
+            $this->formWrapperName = $model->getFormWrapper();
+        }
+                
         $this->form = array();
     }
     
@@ -35,7 +43,7 @@ class FormBuilder {
     
     public function add($fieldName, $controlType, array $params = null) {
         $control = $this->getControl($controlType);
-        $this->form[$fieldName] = $this->addValidationResult($fieldName, $control->build($fieldName, $params, $this->results));
+        $this->form[$fieldName] = $this->addValidationResult($fieldName, $control->build($fieldName, $params, $this->results, $this->formWrapperName));
         
         return $this;
     }
@@ -59,5 +67,5 @@ class FormBuilder {
         
         return $control;
     }
-    
+        
 }

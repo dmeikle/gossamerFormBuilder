@@ -3,6 +3,9 @@
 namespace tests\Gossamer\CMS\Forms;
 
 use Gossamer\CMS\Forms\FormBuilder;
+use tests\Gossamer\CMS\Models\TestModel;
+
+
 
 /**
  * Description of FormBuilderTest
@@ -72,6 +75,28 @@ class FormBuilderTest extends \tests\BaseTest{
         $this->assertTrue(array_key_exists('save', $form));
         $this->assertContains('submit', $form['save']);
     }
+    
+    public function testFormWrapperTextBox() {
+        $model = new TestModel();
+        $builder = new FormBuilder($this->getLogger(), $model);
+        $results = array('firstname' => 'VALIDATION_INVALID_EMAIL',
+             'firstname_value' => 'invaliddavemmyemail.com',
+            'test' =>'SOME_FAIL_ON_TEST',
+            'test_value' => 'some fail value');
+        $builder->addValidationResults($results);
+        
+        $control = $builder->add('test2', 'radio', array('value' => 'dave meikle'))
+                ->add('test1','text', array('value' => 'dave meikle', 'id' => 'test1'))
+                ->add('firstname', 'text')
+                ->add('lastname', 'text');
+        
+        $form = $control->getForm();
+        print_r($form);
+        $this->assertTrue(is_array($form));
+        $this->assertTrue(array_key_exists('firstname', $form));
+        $this->assertContains('invaliddavemmyemail.com', $form['firstname']);
+    }
+    
     
 //    public function testAddTextBoxFailedValidation() {
 //        $builder = new FormBuilder($this->getLogger());
