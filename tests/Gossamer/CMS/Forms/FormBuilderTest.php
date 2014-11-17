@@ -22,7 +22,9 @@ class FormBuilderTest extends \tests\BaseTest{
     public function testAddRadioButton() {
         $builder = new FormBuilder($this->getLogger());
          $results = array('firstname' => 'VALIDATION_INVALID_EMAIL',
-            'test' =>'SOME_FAIL_ON_TEST');
+             'firstname_value' => 'davemmyemail.com',
+            'test' =>'SOME_FAIL_ON_TEST',
+            'test_value' => 'some fail value');
         $builder->addValidationResults($results);
         
         $control = $builder->add('test2', 'radio', array('value' => 'dave meikle'))

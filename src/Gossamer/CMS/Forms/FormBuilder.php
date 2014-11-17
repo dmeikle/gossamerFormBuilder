@@ -35,7 +35,7 @@ class FormBuilder {
     
     public function add($fieldName, $controlType, array $params = null) {
         $control = $this->getControl($controlType);
-        $this->form[$fieldName] = $this->addValidationResult($fieldName, $control->build($fieldName, $params));
+        $this->form[$fieldName] = $this->addValidationResult($fieldName, $control->build($fieldName, $params, $this->results));
         
         return $this;
     }

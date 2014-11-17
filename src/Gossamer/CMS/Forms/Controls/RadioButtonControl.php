@@ -14,15 +14,15 @@ class RadioButtonControl extends AbstractControl {
     
     private $textBox = '<input type="radio" name="|NAME|"|PARAMS| />';
     
-    public function build($name, array $params = null) {
+    public function build($name, array $params = null, &$validationResults = null) {
         $textBox = str_replace('|NAME|', $name, $this->textBox);
         
-        $this->buildParams($textBox, $params);
+        $this->buildParams($name, $textBox, $params, $validationResults);
         
         return $textBox;
     }
 
-    protected function buildParams(&$control, array $params = null) {
+    protected function buildParams($fieldName, &$control, array $params = null, &$validationResults) {
         if(is_null($params)) {
             $control = str_replace('|PARAMS|', '', $control);
             
