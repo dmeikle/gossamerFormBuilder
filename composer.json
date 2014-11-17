@@ -1,5 +1,5 @@
 {
-    "name": "Gossamer/FormBuilder",
+    "name": "gossamer/form-builder",
     "type": "library",
     "description": "php form builder",
     "keywords": ["php","form builder"],
