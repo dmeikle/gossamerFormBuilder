@@ -3,7 +3,7 @@
 
 namespace Gossamer\CMS\Forms\Controls;
 
-use Gossamer\CMS\Forms\AbstractControl;
+use Gossamer\CMS\Forms\Controls\AbstractControl;
 
 /**
  * Description of TextBox
@@ -12,11 +12,11 @@ use Gossamer\CMS\Forms\AbstractControl;
  */
 class TextBoxControl extends AbstractControl {
     
-    private $textBox = '<input type="text" name="|NAME|" value="|VALUE|"|PARAMS| />';
+    private $textBox = '<input type="text" name="|NAME|"|PARAMS| />';
     
-    public function build($name, $value, array $params = null) {
+    public function build($name, array $params = null) {
         $textBox = str_replace('|NAME|', $name, $this->textBox);
-        $textBox = str_replace('|VALUE|', $value, $textBox);   
+        
         $this->buildParams($textBox, $params);
         
         return $textBox;

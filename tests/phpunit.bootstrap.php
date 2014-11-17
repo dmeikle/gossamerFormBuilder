@@ -10,7 +10,7 @@ require_once(__SITE_PATH . '/../vendor/composer/ClassLoader.php');
  $loader = new Composer\Autoload\ClassLoader();
 
       // register classes with namespaces
-      $loader->add('Validation', __SITE_PATH .'/../src');
+      $loader->add('Gossamer', __SITE_PATH .'/../src');
 
       $loader->add('Monolog', __SITE_PATH.'/../vendor/monolog/monolog/src');
 

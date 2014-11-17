@@ -1,12 +1,6 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-namespace Gossamer\CMS\Forms;
+namespace Gossamer\CMS\Forms\Controls;
 
 /**
  * Description of AbstractControl
@@ -15,11 +9,11 @@ namespace Gossamer\CMS\Forms;
  */
 abstract class AbstractControl {
     
-    public abstract function build($name, $value);
+    public abstract function build($name, array $params = null);
     
     protected function buildParams(&$control, array $params = null) {
         if(is_null($params)) {
-            str_replace('|PARAMS|', '', $control);
+            $control = str_replace('|PARAMS|', '', $control);
             
             return;
         }

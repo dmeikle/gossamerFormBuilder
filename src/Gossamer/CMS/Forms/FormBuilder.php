@@ -18,9 +18,15 @@ class FormBuilder {
     
     private $factory = null;
     
+    private $results = null;
+    
     public function __construct(Logger $logger) {
         $this->logger = $logger;
         $this->form = array();
+    }
+    
+    public function addValidationResults(array $results) {
+        $this->results = $results;
     }
     
     public function getForm() {
@@ -29,15 +35,13 @@ class FormBuilder {
     
     public function add($fieldName, $controlType, array $params = null) {
         $control = $this->getControl($controlType);
-        $this->form[$fieldName] = $control->build($fieldName, $params);
+        $this->form[$fieldName] = $this->addValidationResult($fieldName, $control->build($fieldName, $params));
         
         return $this;
     }
     
     private function getControl($controlType) {
-        $control = ucfirst($controlType);
-        
-        $this->getFactory()->getControl($control);
+        return $this->getFactory()->getControl($controlType);
     }
     
     private function getFactory() {
@@ -46,6 +50,14 @@ class FormBuilder {
         }
         
         return $this->factory;
+    }
+    
+    public function addValidationResult($fieldName, $control) {
+        if(is_array($this->results) && array_key_exists($fieldName, $this->results)) {
+            $control .= "\r\n" . '<div class="validation_error"><?php echo $this->getString(\'' . $this->results[$fieldName] . '\');?></div>';
+        }
+        
+        return $control;
     }
     
 }
