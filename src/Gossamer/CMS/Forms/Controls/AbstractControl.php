@@ -34,7 +34,7 @@ abstract class AbstractControl {
             }
         }
         
-        if(!$valueSet && array_key_exists($fieldName . '_value', $validationResults)) {
+        if(!$valueSet && is_array($validationResults) && array_key_exists($fieldName . '_value', $validationResults)) {
             $paramList .= " value=\"" . $this->formatValue($fieldName, $param, $validationResults) . "\"";
         }
         
