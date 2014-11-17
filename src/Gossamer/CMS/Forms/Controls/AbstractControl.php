@@ -13,7 +13,7 @@ abstract class AbstractControl {
     
     protected function buildParams($fieldName, &$control, array $params = null, &$validationResults) {
         if(is_null($params)) {
-            if(array_key_exists($fieldName . '_value', $validationResults)) {
+            if(is_array($validationResults) && array_key_exists($fieldName . '_value', $validationResults)) {
                 $value = ' value="' . $validationResults[$fieldName . '_value'] . '"';
                 $control = str_replace('|PARAMS|', $value, $control);
             } else {
