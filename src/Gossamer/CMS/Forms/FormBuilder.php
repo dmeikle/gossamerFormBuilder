@@ -54,7 +54,7 @@ class FormBuilder {
     
     public function addValidationResult($fieldName, $control) {
         if(is_array($this->results) && array_key_exists($fieldName, $this->results)) {
-            $control .= "\r\n" . '<div class="validation_error"><?php echo $this->getString(\'' . $this->results[$fieldName] . '\');?></div>';
+            $control .= "\r\n" . '<div class="validation_error">|' . $this->results[$fieldName] . '|</div>';
         }
         
         return $control;
