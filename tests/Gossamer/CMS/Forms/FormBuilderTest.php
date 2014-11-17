@@ -14,6 +14,32 @@ use tests\Gossamer\CMS\Models\TestModel;
  */
 class FormBuilderTest extends \tests\BaseTest{
     
+    
+    public function testPasswordTextBox() {
+        $model = new TestModel();
+        $builder = new FormBuilder($this->getLogger(), $model);
+        
+        $results = array('firstname' => 'VALIDATION_INVALID_EMAIL',
+             'firstname_value' => 'invaliddavemmyemail.com',
+            'test' =>'SOME_FAIL_ON_TEST',
+            'password' => 'hide this password',
+            'test_value' => 'some fail value');
+        $builder->addValidationResults($results);
+        
+        $control = $builder->add('test2', 'radio', array('value' => 'dave meikle'))
+                ->add('test1','text', array('value' => 'dave meikle', 'id' => 'test1'))
+                ->add('email', 'email', array('id' => 'firstname_id'))
+                ->add('password', 'password', array('value' => 'this is a password'))
+                ->add('lastname', 'text');
+        
+        $form = $control->getForm();
+       
+        $this->assertTrue(is_array($form));
+        $this->assertTrue(array_key_exists('password', $form));
+        $this->assertContains('password', $form['password']);
+       
+    }
+    
     public function testEmailTextBox() {
         $builder = new FormBuilder($this->getLogger());
         $results = array('firstname' => 'VALIDATION_INVALID_EMAIL',
@@ -112,7 +138,7 @@ class FormBuilderTest extends \tests\BaseTest{
                 ->add('lastname', 'text');
         
         $form = $control->getForm();
-        print_r($form);
+       
         $this->assertTrue(is_array($form));
         $this->assertTrue(array_key_exists('firstname', $form));
         $this->assertContains('invaliddavemmyemail.com', $form['firstname']);

@@ -25,6 +25,5 @@ class TextBoxControl extends AbstractControl {
         
         return $textBox;
     }
-
     
 }

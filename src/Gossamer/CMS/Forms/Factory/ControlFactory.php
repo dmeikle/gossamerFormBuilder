@@ -20,7 +20,8 @@ class ControlFactory {
         'submit' => 'SubmitButton',
         'button' => 'Button',
         'cancel' => 'CancelButton',
-        'email' => 'EmailTextBox'
+        'email' => 'EmailTextBox',
+        'password' => 'Password'
     );
     
     public function getControl($controlName) {
