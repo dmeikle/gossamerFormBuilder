@@ -21,7 +21,8 @@ class ControlFactory {
         'button' => 'Button',
         'cancel' => 'CancelButton',
         'email' => 'EmailTextBox',
-        'password' => 'Password'
+        'password' => 'Password',
+        'select' => 'SelectionBox'
     );
     
     public function getControl($controlName) {

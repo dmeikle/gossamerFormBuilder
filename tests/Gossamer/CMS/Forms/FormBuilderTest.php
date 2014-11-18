@@ -15,6 +15,28 @@ use tests\Gossamer\CMS\Models\TestModel;
 class FormBuilderTest extends \tests\BaseTest{
     
     
+    public function testSelectionBox() {
+        $model = new TestModel();
+        $builder = new FormBuilder($this->getLogger(), $model);
+        
+        $results = array('firstname' => 'VALIDATION_INVALID_EMAIL',
+             'firstname_value' => 'invaliddavemmyemail.com',
+            'test' =>'SOME_FAIL_ON_TEST',
+            'password' => 'hide this password',
+            'test_value' => 'some fail value');
+        $builder->addValidationResults($results);
+        
+        $control = $builder->add('test2', 'select', array('value' => 'dave meikle'));
+        
+        $form = $control->getForm();
+       print_r($form);
+    
+        $this->assertTrue(is_array($form));
+        $this->assertTrue(array_key_exists('test2', $form));
+        $this->assertContains('test2', $form['test2']);
+       
+    }
+    
     public function testPasswordTextBox() {
         $model = new TestModel();
         $builder = new FormBuilder($this->getLogger(), $model);
