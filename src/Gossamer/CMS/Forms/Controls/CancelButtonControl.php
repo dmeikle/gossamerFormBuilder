@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Gossamer\DBFramework\CMS\Forms\Controls;
+namespace Gossamer\CMS\Forms\Controls;
 
 /**
  * Description of CancelButtonControl

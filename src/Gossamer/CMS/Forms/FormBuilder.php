@@ -1,10 +1,10 @@
 <?php
 
-namespace Gossamer\DBFramework\CMS\Forms;
+namespace Gossamer\CMS\Forms;
 
 use Monolog\Logger;
-use Gossamer\DBFramework\CMS\Forms\Factory\ControlFactory;
-use Gossamer\DBFramework\CMS\Forms\FormBuilderInterface;
+use Gossamer\CMS\Forms\Factory\ControlFactory;
+use Gossamer\CMS\Forms\FormBuilderInterface;
 
 
 /**

@@ -1,8 +1,8 @@
 <?php
 
-namespace Gossamer\DBFramework\CMS\Forms\Controls;
+namespace Gossamer\CMS\Forms\Controls;
 
-use Gossamer\DBFramework\CMS\Forms\Controls\AbstractControl;
+use Gossamer\CMS\Forms\Controls\TextBoxControl;
 
 /**
  * Description of TextBox
