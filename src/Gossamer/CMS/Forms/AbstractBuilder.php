@@ -9,7 +9,7 @@ namespace Gossamer\CMS\Forms;
  */
 abstract class AbstractBuilder {
     
-    abstract public function buildForm(FormBuilder $builder, array $values = null, array $options = null, array $validationResults);
+    abstract public function buildForm(FormBuilder $builder, array $values = null, array $options = null, array $validationResults = null);
     
     
     public function getValue($key, array $result = null) {
