@@ -1,9 +1,9 @@
 <?php
 
-namespace tests\Gossamer\CMS\Forms;
+namespace tests\Gossamer\DBFramework\CMS\Forms;
 
-use Gossamer\CMS\Forms\FormBuilder;
-use tests\Gossamer\CMS\Models\TestModel;
+use Gossamer\DBFramework\CMS\Forms\FormBuilder;
+use tests\Gossamer\DBFramework\CMS\Models\TestModel;
 
 
 
