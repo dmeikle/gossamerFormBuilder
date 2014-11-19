@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace Gossamer\CMS\Forms\Controls;
+namespace Gossamer\DBFramework\CMS\Forms\Controls;
 
 /**
  * Description of PasswordControl

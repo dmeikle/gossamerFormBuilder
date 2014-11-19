@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Gossamer\CMS\Forms;
+namespace Gossamer\DBFramework\CMS\Forms;
 
 /**
  * Description of FormBuilderInterface
