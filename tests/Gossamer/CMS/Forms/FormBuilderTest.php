@@ -29,7 +29,7 @@ class FormBuilderTest extends \tests\BaseTest{
         $control = $builder->add('test2', 'select', array('value' => 'dave meikle'));
         
         $form = $control->getForm();
-       print_r($form);
+      
     
         $this->assertTrue(is_array($form));
         $this->assertTrue(array_key_exists('test2', $form));
