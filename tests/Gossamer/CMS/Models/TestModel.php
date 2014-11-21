@@ -1,8 +1,8 @@
 <?php
 
-namespace tests\Gossamer\DBFramework\CMS\Models;
+namespace tests\Gossamer\CMS\Models;
 
-use Gossamer\DBFramework\CMS\Forms\FormBuilderInterface;
+use Gossamer\CMS\Forms\FormBuilderInterface;
 
 /**
  * Description of TestModel
