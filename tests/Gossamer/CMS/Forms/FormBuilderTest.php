@@ -19,11 +19,13 @@ class FormBuilderTest extends \tests\BaseTest{
         $model = new TestModel();
         $builder = new FormBuilder($this->getLogger(), $model);
         
-        $results = array('firstname' => 'VALIDATION_INVALID_EMAIL',
-             'firstname_value' => 'invaliddavemmyemail.com',
+        $results = array(
+            'firstname' => 'VALIDATION_INVALID_EMAIL',
+            'firstname_value' => 'invaliddavemmyemail.com',
             'test' =>'SOME_FAIL_ON_TEST',
             'password' => 'hide this password',
-            'test_value' => 'some fail value');
+            'test_value' => 'some fail value'
+            );
         $builder->addValidationResults($results);
         
         $control = $builder->add('test2', 'select', array('value' => 'dave meikle'));
@@ -80,6 +82,24 @@ class FormBuilderTest extends \tests\BaseTest{
         $this->assertTrue(is_array($form));
         $this->assertTrue(array_key_exists('email', $form));
         $this->assertContains('email', $form['email']);
+       
+    }
+    
+    public function testAddTextArea() {
+        $builder = new FormBuilder($this->getLogger());
+        $results = array('firstname' => 'VALIDATION_INVALID_EMAIL',
+             'firstname_value' => 'invaliddavemmyemail.com',
+            'test' =>'SOME_FAIL_ON_TEST',
+            'test_value' => 'some fail value');
+        $builder->addValidationResults($results);
+        
+        $control = $builder->add('test2', 'textarea', array('value' => 'dave meikle', 'class' => 'form-control'));
+        
+        $form = $control->getForm();
+        print_r($form);
+        $this->assertTrue(is_array($form));
+        $this->assertTrue(array_key_exists('test2', $form));
+        $this->assertContains('dave meikle', $form['test2']);
        
     }
     

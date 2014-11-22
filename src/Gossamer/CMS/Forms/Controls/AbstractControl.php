@@ -29,8 +29,13 @@ abstract class AbstractControl {
         $paramList = '';
         foreach($params as $key => $param) {
             if($key == 'value') {
-                $paramList .= " value=\"" . $this->formatValue($fieldName, $param, $validationResults) . "\"";
+                if(strpos($control, '|VALUE|') === false) {
+                    $paramList .= " value=\"" . $this->formatValue($fieldName, $param, $validationResults) . "\"";
+                } else {
+                    $control = str_replace('|VALUE|', $this->formatValue($fieldName, $param, $validationResults), $control);
+                }
                 $valueSet = true;
+                
             } elseif ($key == 'id') {
                 $paramList .= " id=\"$param\"";
                 $idSet = true;
