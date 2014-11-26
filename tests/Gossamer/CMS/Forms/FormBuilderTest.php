@@ -41,10 +41,10 @@ class FormBuilderTest extends \tests\BaseTest{
                 ->add('lastname', 'text');
         
         $form = $control->getForm();
-       
+       print_r($form);
         $this->assertTrue(is_array($form));
         $this->assertTrue(array_key_exists('test2', $form));
-        $this->assertTrue(array_key_exists('en_US', $form['test2']));
+        $this->assertTrue(array_key_exists('en_US', $form['test2']['locales']));
     }
     
     
