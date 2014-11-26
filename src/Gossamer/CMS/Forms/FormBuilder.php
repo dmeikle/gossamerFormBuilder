@@ -41,9 +41,17 @@ class FormBuilder {
        return $this->form;
     }
     
-    public function add($fieldName, $controlType, array $params = null) {
+    public function add($fieldName, $controlType, array $params = null, array $locales = null) {
         $control = $this->getControl($controlType);
-        $this->form[$fieldName] = $this->addValidationResult($fieldName, $control->build($fieldName, $params, $this->results, $this->formWrapperName));
+        
+        if(!is_null($locales)) {
+            foreach($locales as $locale) {
+                $value = array('value' => $params['value'][$locale['locale']]);
+                $this->form[$fieldName][$locale['locale']] = $this->addValidationResult($fieldName, $control->build($fieldName, $value, $this->results, $this->formWrapperName));
+            }
+        } else {
+            $this->form[$fieldName] = $this->addValidationResult($fieldName, $control->build($fieldName, $params, $this->results, $this->formWrapperName));
+        }
         
         return $this;
     }
