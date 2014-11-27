@@ -25,7 +25,7 @@ class FormBuilderTest extends \tests\BaseTest{
                 'locale' => 'zh_CN'
             )
         );
-        
+         $model = new TestModel();
         $builder = new FormBuilder($this->getLogger());
         $results = array('test2' => 'VALIDATION_INVALID_EMAIL',
              'firstname_value' => 'invaliddavemmyemail.com',

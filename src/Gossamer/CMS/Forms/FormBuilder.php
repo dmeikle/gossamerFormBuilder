@@ -48,8 +48,11 @@ class FormBuilder {
             foreach($locales as $locale) {
                 $localeParams = $params;
                 unset($localeParams['value']);
-                $localeParams['value'] =  $params['value'][$locale['locale']];
-                $localeFieldName = $fieldName . '[locales][' . $locale['locale'] . ']';
+                $localeParams['value'] =  $params['value'][$locale['locale']];                
+                $localeFieldName = $fieldName . '][locales][' . $locale['locale'];
+                if(is_null($this->formWrapperName)) {
+                    $localeFieldName = $fieldName . '[locales][' . $locale['locale'] .']';
+                }
                 $this->form[$fieldName]['locales'][$locale['locale']] = $this->addValidationResult($fieldName, $control->build($localeFieldName, $localeParams, $this->results, $this->formWrapperName));
             }
         } else {
