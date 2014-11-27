@@ -12,7 +12,7 @@ use Gossamer\CMS\Forms\FormBuilderInterface;
 class TestModel implements FormBuilderInterface{
     
     public function getFormWrapper() {
-        return 'test';
+        return 'TestControl';
     }
 
 }

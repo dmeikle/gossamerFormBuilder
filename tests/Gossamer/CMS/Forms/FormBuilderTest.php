@@ -26,7 +26,7 @@ class FormBuilderTest extends \tests\BaseTest{
             )
         );
          $model = new TestModel();
-        $builder = new FormBuilder($this->getLogger());
+        $builder = new FormBuilder($this->getLogger(), $model);
         $results = array('test2' => 'VALIDATION_INVALID_EMAIL',
              'firstname_value' => 'invaliddavemmyemail.com',
             'test' =>'SOME_FAIL_ON_TEST',

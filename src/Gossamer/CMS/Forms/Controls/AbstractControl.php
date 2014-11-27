@@ -47,8 +47,10 @@ abstract class AbstractControl {
         if(!$valueSet && is_array($validationResults) && array_key_exists($fieldName . '_value', $validationResults)) {
             $paramList .= " value=\"" . $this->formatValue($fieldName, $param, $validationResults) . "\"";
         }
-        if(!$idSet && !is_null($wrapperName)) {
-            $paramList .= ' id="' . $wrapperName . '_' . $fieldName . '"';
+        if(!$idSet) {
+            $idName = str_replace(']', '', $fieldName);
+            $idName = str_replace('[', '_', $idName);
+            $paramList .= ' id="' . (!is_null($wrapperName)? $wrapperName . '_' : '')   . $idName . '"';
         }
         
         $control = str_replace('|PARAMS|', $paramList, $control);
