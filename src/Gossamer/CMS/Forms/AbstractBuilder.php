@@ -33,7 +33,7 @@ abstract class AbstractBuilder {
         $fields = $model->getEmptyModelStructure();
         
         foreach($fields as $row) {
-            if(array_key_exists('locales', $rows)) {
+            if(array_key_exists('locales', $row)) {
                 
                 return $this->drawLocalesColumns($locales, $row['locales']);                
             }

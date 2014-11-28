@@ -14,18 +14,9 @@ use tests\Gossamer\CMS\Models\TestModel;
  */
 class FormBuilderTest extends \tests\BaseTest{
     
-    
-    public function testLocalesTextBox() {
-        $locales = array(
-            'en_US' => array(
-                'locale' => 'en_US'
-            ),
-            
-            'zh_CN' => array(
-                'locale' => 'zh_CN'
-            )
-        );
-         $model = new TestModel();
+    public function testFormNoLocales() {
+        $locales = $this->getLocales();
+        $model = new TestModel();
         $builder = new FormBuilder($this->getLogger(), $model);
         $results = array('test2' => 'VALIDATION_INVALID_EMAIL',
              'firstname_value' => 'invaliddavemmyemail.com',
@@ -41,7 +32,30 @@ class FormBuilderTest extends \tests\BaseTest{
                 ->add('lastname', 'text');
         
         $form = $control->getForm();
-       print_r($form);
+      
+        $this->assertTrue(is_array($form));
+        $this->assertTrue(array_key_exists('test2', $form));
+        $this->assertTrue(array_key_exists('en_US', $form['test2']['locales']));  
+    }
+    public function testLocalesTextBox() {
+        $locales = $this->getLocales();
+        $model = new TestModel();
+        $builder = new FormBuilder($this->getLogger(), $model);
+        $results = array('test2' => 'VALIDATION_INVALID_EMAIL',
+             'firstname_value' => 'invaliddavemmyemail.com',
+            'test' =>'SOME_FAIL_ON_TEST',
+            'test_value' => 'some fail value');
+        $builder->addValidationResults($results);
+        
+        $control = $builder->add('test2', 'radio', array('value' => 
+                array('en_US' => 'english value',
+                    'zh_CN' => 'chinese value')), $locales)
+                ->add('test1','text', array('value' => 'dave meikle', 'id' => 'test1'))
+                ->add('firstname', 'text', array('id' => 'firstname_id'))
+                ->add('lastname', 'text');
+        
+        $form = $control->getForm();
+      
         $this->assertTrue(is_array($form));
         $this->assertTrue(array_key_exists('test2', $form));
         $this->assertTrue(array_key_exists('en_US', $form['test2']['locales']));
@@ -219,6 +233,18 @@ class FormBuilderTest extends \tests\BaseTest{
         $this->assertTrue(is_array($form));
         $this->assertTrue(array_key_exists('firstname', $form));
         $this->assertContains('invaliddavemmyemail.com', $form['firstname']);
+    }
+    
+    private function getLocales() {
+        return array(
+            'en_US' => array(
+                'locale' => 'en_US'
+            ),
+            
+            'zh_CN' => array(
+                'locale' => 'zh_CN'
+            )
+        );
     }
     
     
