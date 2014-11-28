@@ -41,6 +41,10 @@ class FormBuilder {
        return $this->form;
     }
     
+    public function getModel() {
+        return $this->model;
+    }
+    
     public function add($fieldName, $controlType, array $params = null, array $locales = null) {
         $control = $this->getControl($controlType);
         
