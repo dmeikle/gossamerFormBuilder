@@ -24,12 +24,14 @@ class FormBuilder {
     
     private $formWrapperName = null;
     
+    private $model = null;
+    
     public function __construct(Logger $logger, FormBuilderInterface $model = null) {
         $this->logger = $logger;
         if(!is_null($model)) {
             $this->formWrapperName = $model->getFormWrapper();
         }
-                
+        $this->model = $model; 
         $this->form = array();
     }
     
