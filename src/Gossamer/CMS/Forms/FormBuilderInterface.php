@@ -12,4 +12,5 @@ interface FormBuilderInterface {
     
     public function getFormWrapper();
     
+    public function getEmptyModelStructure();
 }

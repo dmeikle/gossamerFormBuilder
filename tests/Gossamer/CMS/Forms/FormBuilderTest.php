@@ -18,12 +18,16 @@ class FormBuilderTest extends \tests\BaseTest{
         $locales = $this->getLocales();
         $model = new TestModel();
         $builder = new FormBuilder($this->getLogger(), $model);
+        $testBuilder = new TestBuilder();
+        $testBuilder->setLocales($locales);
         $results = array('test2' => 'VALIDATION_INVALID_EMAIL',
              'firstname_value' => 'invaliddavemmyemail.com',
             'test' =>'SOME_FAIL_ON_TEST',
             'test_value' => 'some fail value');
         $builder->addValidationResults($results);
+        $localeValues = $testBuilder->getLocalesFields($builder->getModel());
         
+       
         $control = $builder->add('test2', 'radio', array('value' => 
                 array('en_US' => 'english value',
                     'zh_CN' => 'chinese value')), $locales)
@@ -37,6 +41,7 @@ class FormBuilderTest extends \tests\BaseTest{
         $this->assertTrue(array_key_exists('test2', $form));
         $this->assertTrue(array_key_exists('en_US', $form['test2']['locales']));  
     }
+  /*   
     public function testLocalesTextBox() {
         $locales = $this->getLocales();
         $model = new TestModel();
@@ -60,7 +65,7 @@ class FormBuilderTest extends \tests\BaseTest{
         $this->assertTrue(array_key_exists('test2', $form));
         $this->assertTrue(array_key_exists('en_US', $form['test2']['locales']));
     }
-    
+   
     
     public function testSelectionBox() {
         $model = new TestModel();
@@ -234,7 +239,8 @@ class FormBuilderTest extends \tests\BaseTest{
         $this->assertTrue(array_key_exists('firstname', $form));
         $this->assertContains('invaliddavemmyemail.com', $form['firstname']);
     }
-    
+ * 
+     */   
     private function getLocales() {
         return array(
             'en_US' => array(
@@ -247,6 +253,7 @@ class FormBuilderTest extends \tests\BaseTest{
         );
     }
     
+     
     
 //    public function testAddTextBoxFailedValidation() {
 //        $builder = new FormBuilder($this->getLogger());

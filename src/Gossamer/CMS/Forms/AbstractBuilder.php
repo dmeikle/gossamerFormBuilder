@@ -3,8 +3,6 @@
 
 namespace Gossamer\CMS\Forms;
 
-use Gossamer\Caching\CacheManager;
-use core\AbstractModel;
 
 /**
  *
@@ -29,29 +27,32 @@ abstract class AbstractBuilder {
         return $result[$key];
     }
     
-    public function getLocalesFields(AbstractModel $model) {
+    public function getLocalesFields(FormBuilderInterface $model) {
         $fields = $model->getEmptyModelStructure();
-        
-        foreach($fields as $row) {
+       
+        foreach($fields['mappings'] as $row) {
+            
             if(array_key_exists('locales', $row)) {
-                
-                return $this->drawLocalesColumns($locales, $row['locales']);                
+                echo "found locales\r\n";
+                return $this->drawLocalesColumns($row['locales']);                
             }
         }
         
         return null;
     }
     
-    private function drawLocalesColumns(array $locales, array $row) {
+    private function drawLocalesColumns(array $row) {
         $retval = array();
         
         foreach($this->locales as $locale) {
             $key = $locale['locale'];
             foreach($row as $column) {
+              
                 $retval[$key][$column['Field']] = '';
             }            
         }
         
         return $retval;
     }
+    
 }

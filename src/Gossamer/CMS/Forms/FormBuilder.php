@@ -54,6 +54,7 @@ class FormBuilder {
             foreach($locales as $locale) {
                 $localeParams = $params;
                 unset($localeParams['value']);
+               
                 $localeParams['value'] =  $params['value'][$locale['locale']];                
                 $localeFieldName = 'locale][' . $locale['locale'] .'][' . $fieldName;
                 if(is_null($this->formWrapperName)) {
