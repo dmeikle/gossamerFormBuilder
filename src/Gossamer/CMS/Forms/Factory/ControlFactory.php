@@ -22,7 +22,8 @@ class ControlFactory {
         'cancel' => 'CancelButton',
         'email' => 'EmailTextBox',
         'password' => 'Password',
-        'select' => 'SelectionBox'
+        'select' => 'SelectionBox',
+        'file' => 'FileInputControl'
     );
     
     public function getControl($controlName) {
