@@ -41,7 +41,7 @@ class FormBuilderTest extends \tests\BaseTest{
         $this->assertTrue(array_key_exists('test2', $form));
         $this->assertTrue(array_key_exists('en_US', $form['test2']['locales']));  
     }
-  /*   
+     
     public function testLocalesTextBox() {
         $locales = $this->getLocales();
         $model = new TestModel();
@@ -239,8 +239,8 @@ class FormBuilderTest extends \tests\BaseTest{
         $this->assertTrue(array_key_exists('firstname', $form));
         $this->assertContains('invaliddavemmyemail.com', $form['firstname']);
     }
- * 
-     */   
+ 
+    
     private function getLocales() {
         return array(
             'en_US' => array(
