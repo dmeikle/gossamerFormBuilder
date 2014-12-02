@@ -42,17 +42,19 @@ class FormBuilderTest extends \tests\BaseTest{
         $this->assertTrue(array_key_exists('en_US', $form['test2']['locales']));  
     }
      
-    public function testLocalesTextBox() {
+
+    
+    public function testMultiSelectBox() {
         $locales = $this->getLocales();
         $model = new TestModel();
-        $builder = new FormBuilder($this->getLogger(), $model);
+        $builder = new FormBuilder($this->getLogger());
         $results = array('test2' => 'VALIDATION_INVALID_EMAIL',
              'firstname_value' => 'invaliddavemmyemail.com',
             'test' =>'SOME_FAIL_ON_TEST',
             'test_value' => 'some fail value');
         $builder->addValidationResults($results);
         
-        $control = $builder->add('test2', 'radio', array('value' => 
+        $control = $builder->add('test2', 'select', array('multiple' => 'true', 'value' => 
                 array('en_US' => 'english value',
                     'zh_CN' => 'chinese value')), $locales)
                 ->add('test1','text', array('value' => 'dave meikle', 'id' => 'test1'))
@@ -60,7 +62,7 @@ class FormBuilderTest extends \tests\BaseTest{
                 ->add('lastname', 'text');
         
         $form = $control->getForm();
-      
+      print_r($form);
         $this->assertTrue(is_array($form));
         $this->assertTrue(array_key_exists('test2', $form));
         $this->assertTrue(array_key_exists('en_US', $form['test2']['locales']));

@@ -9,14 +9,21 @@ namespace Gossamer\CMS\Forms\Controls;
  */
 class SelectionBoxControl extends TextBoxControl{
     
-    protected $box = '<select  name="|NAME|"|PARAMS|>|OPTIONS|</select>'; 
+    protected $box = '<select name="|NAME|"|PARAMS|>|OPTIONS|</select>'; 
     
     public function build($name, array $params = null, &$validationResults = null, $wrapperName = null) {
-       if(!is_null($wrapperName)) {
-            $box = str_replace('|NAME|', $wrapperName . '[' . $name . ']', $this->box);
+       
+        $multi = false;
+        if(is_array($params) && array_key_exists('multiple', $params)) {
+            $multi = true;
+        }
+        
+        if(!is_null($wrapperName)) {
+            $box = str_replace('|NAME|', $wrapperName . '[' . $name . ']' . (($multi) ? '[]' : ''), $this->box);
         } else {
-            $box = str_replace('|NAME|', $name, $this->textBox);
+            $box = str_replace('|NAME|', (($multi) ? $name . '[]' : $name), $this->textBox);
         } 
+        
         $options = '';
         if(is_array($params) && array_key_exists('options', $params)) {
             $options = $params['options'];
