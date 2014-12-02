@@ -55,4 +55,19 @@ abstract class AbstractBuilder {
         return $retval;
     }
     
+    protected function buildLocaleValuesArray($fieldName, array $values = null, array $locales = null) {
+        
+        $retval = array();
+        
+        foreach($locales as $key => $row) {
+            if(is_array($values) && array_key_exists('locales', $values)) {
+                $retval[$key] = $values['locales'][$key][$fieldName];
+            } else {
+                $retval[$key] = '';
+            }                
+            
+        }
+       
+        return $retval;
+    }
 }
