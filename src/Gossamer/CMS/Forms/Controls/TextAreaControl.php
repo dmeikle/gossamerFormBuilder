@@ -16,11 +16,9 @@ class TextAreaControl extends AbstractControl {
     protected $textBox = '<textarea  name="|NAME|" |PARAMS|>|VALUE|</textarea>';
     
     public function build($name, array $params = null, &$results = null, $wrapperName = null) {
-        if(!is_null($wrapperName)) {
-            $textBox = str_replace('|NAME|', $wrapperName . '[' . $name . ']', $this->textBox);
-        } else {
-            $textBox = str_replace('|NAME|', $name, $this->textBox);
-        }
+
+        $textBox = $this->textBox;
+        $this->getControlName($name, $textBox, $params, $wrapperName);
         
         $this->buildParams($name, $textBox, $params, $results, $wrapperName);
         

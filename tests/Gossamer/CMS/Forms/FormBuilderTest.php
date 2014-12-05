@@ -44,10 +44,10 @@ class FormBuilderTest extends \tests\BaseTest{
         
         $builder->add('answer', 'check', array('class' => 'form-control', 'value' => '1'));
         $form = $control->getForm();
-        print_r($form);
+       // print_r($form);
     }
      
-/*
+
     
     public function testMultiSelectBox() {
         $locales = $this->getLocales();
@@ -71,13 +71,13 @@ class FormBuilderTest extends \tests\BaseTest{
                 ->add('lastname', 'text');
         
         $form = $control->getForm();
-      print_r($form);
+     // print_r($form);
         $this->assertTrue(is_array($form));
         $this->assertTrue(array_key_exists('test2', $form));
         $this->assertTrue(array_key_exists('en_US', $form['test2']['locales']));
     }
    
-    
+ 
     public function testSelectionBox() {
         $model = new TestModel();
         $builder = new FormBuilder($this->getLogger(), $model);
@@ -101,8 +101,30 @@ class FormBuilderTest extends \tests\BaseTest{
         $this->assertContains('test2', $form['test2']);
        
     }
-    
-    
+     public function testTextBoxArray() {
+        $model = new TestModel();
+        $builder = new FormBuilder($this->getLogger(), $model);
+        
+        $results = array('firstname' => 'VALIDATION_INVALID_EMAIL',
+             'firstname_value' => 'invaliddavemmyemail.com',
+            'test' =>'SOME_FAIL_ON_TEST',
+            'password' => 'hide this password',
+            'test_value' => 'some fail value');
+        $builder->addValidationResults($results);
+        
+        $control = $builder->add('test2', 'radio', array('value' => 'dave meikle'))
+                ->add('testarr','text', array('values' => array('dave meikle','tom smith'), 'id' => 'test1'))
+                ->add('email', 'email', array('id' => 'firstname_id'))
+                ->add('password', 'password', array('value' => 'this is a password'))
+                ->add('lastname', 'text');
+        
+        $form = $control->getForm();
+       print_r($form);
+        $this->assertTrue(is_array($form));
+        $this->assertTrue(array_key_exists('password', $form));
+        $this->assertContains('password', $form['password']);       
+    }
+     
     
     public function testPasswordTextBox() {
         $model = new TestModel();
@@ -125,10 +147,9 @@ class FormBuilderTest extends \tests\BaseTest{
        
         $this->assertTrue(is_array($form));
         $this->assertTrue(array_key_exists('password', $form));
-        $this->assertContains('password', $form['password']);
-       
+        $this->assertContains('password', $form['password']);       
     }
-    
+   
     public function testEmailTextBox() {
         $builder = new FormBuilder($this->getLogger());
         $results = array('firstname' => 'VALIDATION_INVALID_EMAIL',
@@ -149,7 +170,7 @@ class FormBuilderTest extends \tests\BaseTest{
         $this->assertContains('email', $form['email']);
        
     }
-    
+     /*  
     public function testAddTextArea() {
         $builder = new FormBuilder($this->getLogger());
         $results = array('firstname' => 'VALIDATION_INVALID_EMAIL',
