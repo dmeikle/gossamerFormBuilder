@@ -52,26 +52,19 @@ abstract class AbstractMultiChoiceControl  extends AbstractControl{
         }
         
         $control = str_replace('|PARAMS|', $paramList, $control);
-        
+        print_r($params);
         $retval = '';
         if(array_key_exists('values', $params)) {
             foreach($params['values'] as $param) {
                 $retval .= str_replace('|VALUE|', $this->formatValue($fieldName, $param, $validationResults), $control). "\r\n";
             }
         } else {
-            foreach($params['value'] as $param) {
-                $retval .= str_replace('|VALUE|', $this->formatValue($fieldName, $param, $validationResults), $control). "\r\n";
+           if(array_key_exists('value', $params) ) {
+                $retval .= str_replace('|VALUE|', $this->formatValue($fieldName, $params['value'], $validationResults), $control). "\r\n";
             }
         }
         
         $control = $retval;
     }
     
-//    private function formatValue($fieldName, $value, &$validationResults) {
-//        if(is_array($validationResults) && array_key_exists($fieldName . '_value', $validationResults)) {
-//            return $validationResults[$fieldName . '_value'];
-//        }
-//        
-//        return $value;
-//    }
 }
