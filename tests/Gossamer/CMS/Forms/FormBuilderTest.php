@@ -28,21 +28,22 @@ class FormBuilderTest extends \tests\BaseTest{
         $localeValues = $testBuilder->getLocalesFields($builder->getModel());
         
        
-        $control = $builder->add('test2', 'radio', array('value' => 
-                array('en_US' => 'english value',
-                    'zh_CN' => 'chinese value')), $locales)
-                ->add('test1','text', array('value' => 'dave meikle', 'id' => 'test1'))
-                ->add('firstname', 'text', array('id' => 'firstname_id'))
-                ->add('lastname', 'text');
+//        $control = $builder->add('test2', 'radio', array('values' => 
+//                array('en_US' => 'english value',
+//                    'zh_CN' => 'chinese value')), $locales)
+          $control = $builder->add('test2', 'radio', array('values' => array('dave smith', 'dave meikle')));
+//                ->add('test1','text', array('value' => 'dave meikle', 'id' => 'test1'))
+//                ->add('firstname', 'text', array('id' => 'firstname_id'))
+//                ->add('lastname', 'text');
         
         $form = $control->getForm();
       
         $this->assertTrue(is_array($form));
         $this->assertTrue(array_key_exists('test2', $form));
-        $this->assertTrue(array_key_exists('en_US', $form['test2']['locales']));  
+        $this->assertContains('dave smith' , $form['test2']);  
     }
      
-
+/*
     
     public function testMultiSelectBox() {
         $locales = $this->getLocales();
@@ -57,6 +58,10 @@ class FormBuilderTest extends \tests\BaseTest{
         $control = $builder->add('test2', 'select', array('multiple' => 'true', 'value' => 
                 array('en_US' => 'english value',
                     'zh_CN' => 'chinese value')), $locales)
+                ->add('isActive', 'check', array(
+                    'label' => 'is Active',
+                    'checked' => true
+                ))
                 ->add('test1','text', array('value' => 'dave meikle', 'id' => 'test1'))
                 ->add('firstname', 'text', array('id' => 'firstname_id'))
                 ->add('lastname', 'text');
@@ -188,13 +193,14 @@ class FormBuilderTest extends \tests\BaseTest{
             'test_value' => 'some fail value');
         $builder->addValidationResults($results);
         
-        $control = $builder->add('test2', 'radio', array('value' => 'dave meikle'))
+        $control = $builder->add('test2', 'radio', array('values' => array('dave smith', 'dave meikle')))
+                ->add('test2', 'radio', array('value' => 'dave smith'))
                 ->add('test1','text', array('value' => 'dave meikle', 'id' => 'test1'))
                 ->add('firstname', 'text', array( 'id' => 'test1'))
                 ->add('lastname', 'text');
         
         $form = $control->getForm();
-        
+        print_r($form);
         $this->assertTrue(is_array($form));
         $this->assertTrue(array_key_exists('test2', $form));
         $this->assertContains('dave meikle', $form['test2']);
@@ -241,7 +247,7 @@ class FormBuilderTest extends \tests\BaseTest{
         $this->assertTrue(array_key_exists('firstname', $form));
         $this->assertContains('invaliddavemmyemail.com', $form['firstname']);
     }
- 
+ */
     
     private function getLocales() {
         return array(

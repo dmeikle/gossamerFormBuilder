@@ -2,16 +2,18 @@
 
 namespace Gossamer\CMS\Forms\Controls;
 
+use Gossamer\CMS\Forms\Exceptions\ParameterNotFoundException;
+
 /**
  * Description of AbstractControl
  *
  * @author Dave Meikle
  */
-abstract class AbstractControl {
+abstract class AbstractMultiChoiceControl  extends AbstractControl{
     
-    public abstract function build($name, array $params = null, &$validationResults = null, $wrapperName = null);
     
     protected function buildParams($fieldName, &$control, array $params = null, &$validationResults = null, $wrapperName = null) {
+        
         if(is_null($params)) {   
             if(is_array($validationResults) && array_key_exists($fieldName . '_value', $validationResults)) {               
                 $value = ' value="' . $validationResults[$fieldName . '_value'] . '"';
@@ -23,19 +25,17 @@ abstract class AbstractControl {
             return;
         }
        
+        if(!array_key_exists('values', $params)) {
+            throw new ParameterNotFoundException();
+        }
         $valueSet = false;
         $idSet = false;
         
         $paramList = '';
         foreach($params as $key => $param) {
-            if($key == 'value') {
-                if(strpos($control, '|VALUE|') === false) {
-                    $paramList .= " value=\"" . $this->formatValue($fieldName, $param, $validationResults) . "\"";
-                } else {
-                    $control = str_replace('|VALUE|', $this->formatValue($fieldName, $param, $validationResults), $control);
-                }
-                $valueSet = true;
-                
+            if($key == 'values') {
+               //we'll do this last
+               continue;                
             } elseif ($key == 'id') {
                 $paramList .= " id=\"$param\"";
                 $idSet = true;
@@ -54,13 +54,21 @@ abstract class AbstractControl {
         }
         
         $control = str_replace('|PARAMS|', $paramList, $control);
+        
+        $retval = '';
+        foreach($params['values'] as $param) {
+            
+            $retval .= str_replace('|VALUE|', $this->formatValue($fieldName, $param, $validationResults), $control). "\r\n";               
+            
+        }
+        $control = $retval;
     }
     
-    protected function formatValue($fieldName, $value, &$validationResults) {
-        if(is_array($validationResults) && array_key_exists($fieldName . '_value', $validationResults)) {
-            return $validationResults[$fieldName . '_value'];
-        }
-        
-        return $value;
-    }
+//    private function formatValue($fieldName, $value, &$validationResults) {
+//        if(is_array($validationResults) && array_key_exists($fieldName . '_value', $validationResults)) {
+//            return $validationResults[$fieldName . '_value'];
+//        }
+//        
+//        return $value;
+//    }
 }

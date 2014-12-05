@@ -3,14 +3,14 @@
 
 namespace Gossamer\CMS\Forms\Controls;
 
-use Gossamer\CMS\Forms\Controls\AbstractControl;
+use Gossamer\CMS\Forms\Controls\AbstractMultiChoiceControl;
 
 /**
  * Description of TextBox
  *
  * @author Dave Meikle
  */
-class CheckBoxControl extends AbstractControl {
+class CheckBoxControl extends AbstractMultiChoiceControl {
     
     private $textBox = '<input type="checkbox" name="|NAME|"|PARAMS| />';
     

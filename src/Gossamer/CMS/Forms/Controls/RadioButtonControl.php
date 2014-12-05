@@ -3,16 +3,16 @@
 
 namespace Gossamer\CMS\Forms\Controls;
 
-use Gossamer\CMS\Forms\Controls\AbstractControl;
+use Gossamer\CMS\Forms\Controls\AbstractMultiChoiceControl;
 
 /**
  * Description of TextBox
  *
  * @author Dave Meikle
  */
-class RadioButtonControl extends AbstractControl {
+class RadioButtonControl extends AbstractMultiChoiceControl {
     
-    private $textBox = '<input type="radio" name="|NAME|"|PARAMS| />';
+    private $textBox = '<input type="radio" name="|NAME|" value="|VALUE|"|PARAMS| />';
     
     public function build($name, array $params = null, &$validationResults = null, $wrapperName = null) {
          if(!is_null($wrapperName)) {
