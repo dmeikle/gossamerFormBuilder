@@ -25,9 +25,7 @@ abstract class AbstractMultiChoiceControl  extends AbstractControl{
             return;
         }
        
-        if(!array_key_exists('values', $params)) {
-            throw new ParameterNotFoundException();
-        }
+        
         $valueSet = false;
         $idSet = false;
         
@@ -56,11 +54,16 @@ abstract class AbstractMultiChoiceControl  extends AbstractControl{
         $control = str_replace('|PARAMS|', $paramList, $control);
         
         $retval = '';
-        foreach($params['values'] as $param) {
-            
-            $retval .= str_replace('|VALUE|', $this->formatValue($fieldName, $param, $validationResults), $control). "\r\n";               
-            
+        if(array_key_exists('values', $params)) {
+            foreach($params['values'] as $param) {
+                $retval .= str_replace('|VALUE|', $this->formatValue($fieldName, $param, $validationResults), $control). "\r\n";
+            }
+        } else {
+            foreach($params['value'] as $param) {
+                $retval .= str_replace('|VALUE|', $this->formatValue($fieldName, $param, $validationResults), $control). "\r\n";
+            }
         }
+        
         $control = $retval;
     }
     
