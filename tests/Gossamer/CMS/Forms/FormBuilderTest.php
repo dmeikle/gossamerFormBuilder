@@ -31,7 +31,7 @@ class FormBuilderTest extends \tests\BaseTest{
 //        $control = $builder->add('test2', 'radio', array('values' => 
 //                array('en_US' => 'english value',
 //                    'zh_CN' => 'chinese value')), $locales)
-          $control = $builder->add('test2', 'radio', array('values' => array('dave smith', 'dave meikle')));
+          $control = $builder->add('test2', 'check', array('values' => array('dave smith', 'dave meikle')));
 //                ->add('test1','text', array('value' => 'dave meikle', 'id' => 'test1'))
 //                ->add('firstname', 'text', array('id' => 'firstname_id'))
 //                ->add('lastname', 'text');

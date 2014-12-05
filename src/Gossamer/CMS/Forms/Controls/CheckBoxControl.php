@@ -12,7 +12,7 @@ use Gossamer\CMS\Forms\Controls\AbstractMultiChoiceControl;
  */
 class CheckBoxControl extends AbstractMultiChoiceControl {
     
-    private $textBox = '<input type="checkbox" name="|NAME|"|PARAMS| />';
+    private $textBox = '<input type="checkbox" name="|NAME|" value="|VALUE|"|PARAMS| />';
     
     public function build($name, array $params = null, &$validationResults = null, $wrapperName = null) {
          if(!is_null($wrapperName)) {
