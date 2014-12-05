@@ -52,7 +52,7 @@ abstract class AbstractMultiChoiceControl  extends AbstractControl{
         }
         
         $control = str_replace('|PARAMS|', $paramList, $control);
-        print_r($params);
+       
         $retval = '';
         if(array_key_exists('values', $params)) {
             foreach($params['values'] as $param) {
