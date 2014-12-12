@@ -21,7 +21,7 @@ class SelectionBoxControl extends TextBoxControl{
         if(!is_null($wrapperName)) {
             $box = str_replace('|NAME|', $wrapperName . '[' . $name . ']' . (($multi) ? '[]' : ''), $this->box);
         } else {
-            $box = str_replace('|NAME|', (($multi) ? $name . '[]' : $name), $this->textBox);
+            $box = str_replace('|NAME|', (($multi) ? $name . '[]' : $name), $this->box);
         } 
         
         $options = '';
