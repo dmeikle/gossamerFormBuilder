@@ -14,6 +14,14 @@ use tests\Gossamer\CMS\Models\TestModel;
  */
 class FormBuilderTest extends \tests\BaseTest{
     
+    public function testContactInfo() {
+        echo "test contact\r\n";
+        $model = new TestModel();
+        $builder = new FormBuilder($this->getLogger(), $model);
+        $control = $builder->add('EventContacts_id', 'select', array('class' => 'form-control',  'options' => '<option value="1">Steve Olberman</option>'));
+        $form = $control->getForm();
+       
+    }
     public function testFormNoLocales() {
         $locales = $this->getLocales();
         $model = new TestModel();
