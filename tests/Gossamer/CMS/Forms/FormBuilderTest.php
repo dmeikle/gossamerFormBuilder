@@ -14,8 +14,18 @@ use tests\Gossamer\CMS\Models\TestModel;
  */
 class FormBuilderTest extends \tests\BaseTest{
     
+    
+    public function testSpanControl() {
+       
+        $model = new TestModel();
+        $builder = new FormBuilder($this->getLogger(), $model);
+        $control = $builder->add('email', 'span', array('class' => 'form-control', 'value' => 'this is a test of the span tag'));
+        $form = $control->getForm();
+       print_r($form);
+    }
+    
     public function testContactInfo() {
-        echo "test contact\r\n";
+       
         $model = new TestModel();
         $builder = new FormBuilder($this->getLogger(), $model);
         $control = $builder->add('EventContacts_id', 'select', array('class' => 'form-control',  'options' => '<option value="1">Steve Olberman</option>'));
@@ -52,7 +62,8 @@ class FormBuilderTest extends \tests\BaseTest{
         
         $builder->add('answer', 'check', array('class' => 'form-control', 'value' => '1'));
         $form = $control->getForm();
-       // print_r($form);
+        echo "this is form\r\n";
+        print_r($form);
     }
      
 

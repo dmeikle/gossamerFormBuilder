@@ -23,7 +23,8 @@ class ControlFactory {
         'email' => 'EmailTextBox',
         'password' => 'Password',
         'select' => 'SelectionBox',
-        'file' => 'FileInput'
+        'file' => 'FileInput',
+        'span' => 'Span'
     );
     
     public function getControl($controlName) {
