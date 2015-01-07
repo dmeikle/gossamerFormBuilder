@@ -24,7 +24,8 @@ class ControlFactory {
         'password' => 'Password',
         'select' => 'SelectionBox',
         'file' => 'FileInput',
-        'span' => 'Span'
+        'span' => 'Span',
+        'placeholder' => 'PlaceHolder'
     );
     
     public function getControl($controlName) {
