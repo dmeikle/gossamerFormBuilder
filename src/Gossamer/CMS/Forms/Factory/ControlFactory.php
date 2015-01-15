@@ -25,7 +25,8 @@ class ControlFactory {
         'select' => 'SelectionBox',
         'file' => 'FileInput',
         'span' => 'Span',
-        'placeholder' => 'PlaceHolder'
+        'placeholder' => 'PlaceHolder',
+        'hidden' => 'Hidden'
     );
     
     public function getControl($controlName) {
