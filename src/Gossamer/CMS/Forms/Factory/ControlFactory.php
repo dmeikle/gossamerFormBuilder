@@ -25,7 +25,8 @@ class ControlFactory {
     const FILE = 'file';
     const SPAN = 'span';
     const PLACEHOLDER = 'placeholder';
-
+    const LINK = 'link';
+    
     private $namingConvention = array(
         'text' => 'TextBox',
         'radio' => 'RadioButton',
@@ -40,7 +41,8 @@ class ControlFactory {
         'file' => 'FileInput',
         'span' => 'Span',
         'placeholder' => 'PlaceHolder',
-        'hidden' => 'Hidden'
+        'hidden' => 'Hidden',
+        'link' => 'Link'
     );
 
     public function getControl($controlName) {

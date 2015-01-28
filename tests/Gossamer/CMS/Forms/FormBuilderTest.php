@@ -14,14 +14,28 @@ use tests\Gossamer\CMS\Models\TestModel;
  */
 class FormBuilderTest extends \tests\BaseTest{
     
+    public function testLinkControl() {
+        
+        $model = new TestModel();
+        $builder = new FormBuilder($this->getLogger(), $model);
+        $control = $builder->add('mylink', 'link', array('class' => 'btn-xs','href' => '#', 'id' => 'edit-status', 'value' => 'click me'));
+        $form = $control->getForm();
+       
+        $this->assertTrue(is_array($form));
+        $this->assertTrue(array_key_exists('mylink', $form));
+        $this->assertEquals('<a name="TestControl[mylink]" class="btn-xs" href="#" id="edit-status">click me</a>', $form['mylink']);
+    }
     
     public function testSpanControl() {
        
         $model = new TestModel();
         $builder = new FormBuilder($this->getLogger(), $model);
-        $control = $builder->add('email', 'span', array('class' => 'form-control', 'value' => 'this is a test of the span tag'));
+        $control = $builder->add('myspan', 'span', array('class' => 'form-control', 'value' => 'this is a test of the span tag'));
         $form = $control->getForm();
-       print_r($form);
+            
+        $this->assertTrue(is_array($form));
+        $this->assertTrue(array_key_exists('myspan', $form));
+        $this->assertEquals('<span name="TestControl[myspan]"  class="form-control" id="TestControl_myspan">this is a test of the span tag</span>', $form['myspan']);
     }
     
     public function testContactInfo() {
@@ -60,10 +74,10 @@ class FormBuilderTest extends \tests\BaseTest{
         $this->assertTrue(array_key_exists('test2', $form));
         $this->assertContains('dave smith' , $form['test2']);  
         
-        $builder->add('answer', 'check', array('class' => 'form-control', 'value' => '1'));
-        $form = $control->getForm();
-        echo "this is form\r\n";
-        print_r($form);
+//        $builder->add('answer', 'check', array('class' => 'form-control', 'value' => '1'));
+//        $form = $control->getForm();
+//        echo "this is form\r\n";
+//        print_r($form);
     }
      
 
@@ -138,7 +152,7 @@ class FormBuilderTest extends \tests\BaseTest{
                 ->add('lastname', 'text');
         
         $form = $control->getForm();
-       print_r($form);
+       //print_r($form);
         $this->assertTrue(is_array($form));
         $this->assertTrue(array_key_exists('password', $form));
         $this->assertContains('password', $form['password']);       
@@ -189,7 +203,7 @@ class FormBuilderTest extends \tests\BaseTest{
         $this->assertContains('email', $form['email']);
        
     }
-     /*  
+     /* */ 
     public function testAddTextArea() {
         $builder = new FormBuilder($this->getLogger());
         $results = array('firstname' => 'VALIDATION_INVALID_EMAIL',
@@ -238,13 +252,13 @@ class FormBuilderTest extends \tests\BaseTest{
         $builder->addValidationResults($results);
         
         $control = $builder->add('test2', 'radio', array('values' => array('dave smith', 'dave meikle')))
-                ->add('test2', 'radio', array('value' => 'dave smith'))
+                ->add('test2', 'radio', array('value' => 'dave meikle'))
                 ->add('test1','text', array('value' => 'dave meikle', 'id' => 'test1'))
                 ->add('firstname', 'text', array( 'id' => 'test1'))
                 ->add('lastname', 'text');
         
         $form = $control->getForm();
-        print_r($form);
+       
         $this->assertTrue(is_array($form));
         $this->assertTrue(array_key_exists('test2', $form));
         $this->assertContains('dave meikle', $form['test2']);
@@ -291,7 +305,7 @@ class FormBuilderTest extends \tests\BaseTest{
         $this->assertTrue(array_key_exists('firstname', $form));
         $this->assertContains('invaliddavemmyemail.com', $form['firstname']);
     }
- */
+ /**/
     
     private function getLocales() {
         return array(

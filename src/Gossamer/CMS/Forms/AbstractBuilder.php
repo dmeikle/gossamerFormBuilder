@@ -33,7 +33,7 @@ abstract class AbstractBuilder {
         foreach($fields['mappings'] as $row) {
             
             if(array_key_exists('locales', $row)) {
-                echo "found locales\r\n";
+               
                 return $this->drawLocalesColumns($row['locales']);                
             }
         }
