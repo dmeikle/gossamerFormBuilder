@@ -44,7 +44,7 @@ class QuestionBuilder extends FormBuilder {
             return $answers;
         }
         //now do any other control
-        $answers[] = $this->addAnswer($name, $controlType, $params, $questionParams);
+        $answers[] = '<div class="answer">' . $this->addAnswer($name, $controlType, $params, $questionParams) . '</div>';
        
         return $answers;
     }
