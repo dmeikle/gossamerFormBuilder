@@ -38,7 +38,7 @@ class QuestionBuilder extends FormBuilder {
         } elseif($controlType == 'radio' || $controlType == 'check') {
             $answers = array();
             foreach($questionParams['answers'] as $key => $answer) {            
-                $answers[] = $this->addAnswer($name, $controlType, $answer, $questionParams);
+                $answers[] = '<div class="answer">' . $this->addAnswer($name, $controlType, $answer, $questionParams) . '</div>' . "\r\n";
             }
 
             return $answers;
