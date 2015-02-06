@@ -14,10 +14,10 @@ class HiddenControl extends AbstractControl {
     
     protected $textBox = '<input type="hidden" name="|NAME|"|PARAMS| />';
     
-    public function build($name, array $params = null, &$results = null, $wrapperName = null) {
+    public function build($name, array $params = null, &$results = null, $wrapperName = null, $isQuestionBuilder = false) {
         
         $textBox = $this->textBox;
-        $this->getControlName($name, $textBox, $params, $wrapperName);
+        $this->getControlName($name, $textBox, $params, $wrapperName, $isQuestionBuilder);
         
         $this->buildParams($name, $textBox, $params, $results, $wrapperName);
         

@@ -32,13 +32,19 @@ class QuestionBuilder extends FormBuilder {
         }
        
         $questionParams = $params['params'];
-        if(!array_key_exists('answers', $questionParams)) {
+        if(!array_key_exists('answers', $questionParams) && ($controlType == 'radio' || $controlType == 'check')) {
+           
             return;
+        } elseif($controlType == 'radio' || $controlType == 'check') {
+            $answers = array();
+            foreach($questionParams['answers'] as $key => $answer) {            
+                $answers[] = $this->addAnswer($name, $controlType, $answer, $questionParams);
+            }
+
+            return $answers;
         }
-        $answers = array();
-        foreach($questionParams['answers'] as $key => $answer) {            
-            $answers[] = $this->addAnswer($name, $controlType, $answer, $questionParams);
-        }
+        //now do any other control
+        $answers[] = $this->addAnswer($name, $controlType, $params, $questionParams);
        
         return $answers;
     }
@@ -49,9 +55,10 @@ class QuestionBuilder extends FormBuilder {
         
         $answer['Questions_id'] = $params['id'];
        
-        return $this->addValidationResult($fieldName, $control->build($fieldName, $answer, $this->results, $this->formWrapperName));
+        return $this->addValidationResult($fieldName, $control->build($fieldName, $answer, $this->results, $this->formWrapperName, true));
        
     }
+    
     
     public function add($fieldName, $controlType, array $params = null, array $locales = null) {
         $control = $this->getControl($controlType);
@@ -66,13 +73,13 @@ class QuestionBuilder extends FormBuilder {
          
         $answers = $this->addAnswers($fieldName, $controlType, $params);        
         unset($params['answers']);
-        
-        if(array_key_exists('question', $params)) {
-            
-        }
-        $this->form[] = "<div class=\"question\">\r\n$question" .
-        implode("\r\n", $answers) . "</div>\r\n";
        
+        if(is_null($answers)) {
+            $this->form[] = "<div class=\"question\">\r\n$question" ."</div>\r\n";
+        } else {
+            $this->form[] = "<div class=\"question\">\r\n$question" .
+            implode("\r\n", $answers) . "</div>\r\n";
+        }
         return $this;
     }
 

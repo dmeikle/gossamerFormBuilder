@@ -77,7 +77,7 @@ abstract class AbstractMultiChoiceControl  extends AbstractControl{
         
     }
     
-    public function build($name, array $params = null, &$validationResults = null, $wrapperName = null) {
+    public function build($name, array $params = null, &$validationResults = null, $wrapperName = null, $isQuestionBuilder = false) {
         
         $textBox = '';
         if(!is_null($wrapperName)) {

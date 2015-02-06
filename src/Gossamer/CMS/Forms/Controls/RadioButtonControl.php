@@ -13,10 +13,10 @@ use Gossamer\CMS\Forms\Controls\AbstractMultiChoiceControl;
 class RadioButtonControl extends AbstractMultiChoiceControl {
     
     
-    public function build($name, array $params = null, &$validationResults = null, $wrapperName = null) {
+    public function build($name, array $params = null, &$validationResults = null, $wrapperName = null, $isQuestionBuilder = false) {
         $this->textBox = '|TEXT| <input type="radio" name="|NAME|" value="|VALUE|"|PARAMS| />';
        
-        return parent::build($name, $params, $validationResults, $wrapperName);
+        return parent::build($name, $params, $validationResults, $wrapperName, $isQuestionBuilder);
     }
     
     

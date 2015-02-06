@@ -11,7 +11,7 @@ class SelectionBoxControl extends TextBoxControl{
     
     protected $box = '<select name="|NAME|"|PARAMS|>|OPTIONS|</select>'; 
     
-    public function build($name, array $params = null, &$validationResults = null, $wrapperName = null) {
+    public function build($name, array $params = null, &$validationResults = null, $wrapperName = null, $isQuestionBuilder = false) {
        
         $multi = false;
         if(is_array($params) && array_key_exists('multiple', $params)) {

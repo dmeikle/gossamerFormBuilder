@@ -13,7 +13,7 @@ use Gossamer\CMS\Forms\Controls\AbstractMultiChoiceControl;
 class CheckBoxControl extends AbstractMultiChoiceControl {
     
     
-    public function build($name, array $params = null, &$validationResults = null, $wrapperName = null) {
+    public function build($name, array $params = null, &$validationResults = null, $wrapperName = null, $isQuestionBuilder = false) {
         $this->textBox = '<input type="checkbox" name="|NAME|" value="|VALUE|"|PARAMS| /> |TEXT|';
         
         return parent::build($name, $params, $validationResults, $wrapperName);

@@ -12,7 +12,7 @@ class PasswordControl extends AbstractControl{
     
     protected $textBox = '<input type="password" name="|NAME|"|PARAMS| />';
     
-    public function build($name, array $params = null, &$results = null, $wrapperName = null) {
+    public function build($name, array $params = null, &$results = null, $wrapperName = null, $isQuestionBuilder = false) {
         if(!is_null($wrapperName)) {
             $textBox = str_replace('|NAME|', $wrapperName . '[' . $name . ']', $this->textBox);
         } else {

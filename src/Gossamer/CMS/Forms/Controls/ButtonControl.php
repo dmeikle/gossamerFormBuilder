@@ -12,7 +12,7 @@ class ButtonControl extends AbstractControl{
    
     protected $box = '<input type="button" name="|NAME|"|PARAMS| />';
     
-    public function build($name, array $params = null, &$validationResults = null, $wrapperName = null) {
+    public function build($name, array $params = null, &$validationResults = null, $wrapperName = null, $isQuestionBuilder = false) {
         
         $box = str_replace('|NAME|', $name, $this->box);
         

@@ -20,10 +20,10 @@ class LinkControl extends AbstractControl {
     
     protected $box = '<a name="|NAME|"|PARAMS|>|VALUE|</a>';
      
-    public function build($name, array $params = null, &$validationResults = null, $wrapperName = null) {
+    public function build($name, array $params = null, &$validationResults = null, $wrapperName = null, $isQuestionBuilder = false) {
         
         $box = $this->box;
-        $this->getControlName($name, $box, $params, $wrapperName);
+        $this->getControlName($name, $box, $params, $wrapperName, $isQuestionBuilder);
         
         $this->buildParams($name, $box, $params, $results, $wrapperName);
         

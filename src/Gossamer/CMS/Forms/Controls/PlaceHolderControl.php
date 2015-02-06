@@ -16,7 +16,7 @@ use Gossamer\CMS\Forms\Controls\AbstractControl;
 class PlaceHolderControl extends AbstractControl {
     
     
-    public function build($name, array $params = null, &$results = null, $wrapperName = null) {
+    public function build($name, array $params = null, &$results = null, $wrapperName = null, $isQuestionBuilder = false) {
         
         $textBox = '';
         

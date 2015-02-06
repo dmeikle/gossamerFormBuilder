@@ -31,7 +31,7 @@ abstract class AbstractControl {
         return $this->childControls;
     }
     
-    public abstract function build($name, array $params = null, &$validationResults = null, $wrapperName = null);
+    public abstract function build($name, array $params = null, &$validationResults = null, $wrapperName = null, $isQuestionBuilder = false);
     
     
     protected function buildParams($fieldName, &$control, array $params = null, &$validationResults = null, $wrapperName = null) {
@@ -97,7 +97,7 @@ abstract class AbstractControl {
         }
     }
     
-    protected function getControlName($name, &$box, $params = null, $wrapperName = null) {
+    protected function getControlName($name, &$box, $params = null, $wrapperName = null, $isQuestionBuilder = false) {
         $isControlArray = false;
        
         if(!is_null($params)) {
@@ -107,9 +107,17 @@ abstract class AbstractControl {
         }
       
         if(!is_null($wrapperName)) {
-            $box = str_replace('|NAME|', $wrapperName . '[' . $name . ']' . (($isControlArray) ? '[]' : ''), $box);
+            if($isQuestionBuilder) {
+                $box = str_replace('|NAME|', $wrapperName . '[' . $name . '][' . $params['id'] . ']' . (($isControlArray) ? '[]' : ''), $box);
+            }else{
+                $box = str_replace('|NAME|', $wrapperName . '[' . $name . ']' . (($isControlArray) ? '[]' : ''), $box);
+            }
         } else {
-            $box = str_replace('|NAME|', $name . (($isControlArray) ? '[]' : ''), $box);
+            if($isQuestionBuilder){
+                $box = str_replace('|NAME|', $name . '[' . $params['id'] . ']' . (($isControlArray) ? '[]' : ''), $box);
+            }else{
+                $box = str_replace('|NAME|', $name . (($isControlArray) ? '[]' : ''), $box);
+            }
         }
         
     }

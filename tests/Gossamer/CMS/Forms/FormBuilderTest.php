@@ -14,6 +14,19 @@ use tests\Gossamer\CMS\Models\TestModel;
  */
 class FormBuilderTest extends \tests\BaseTest{
     
+    
+    public function testFileUploadControl() {
+       
+        $model = new TestModel();
+        $builder = new FormBuilder($this->getLogger(), $model);
+        $control = $builder->add('myloader', 'file', array('class' => 'form-control', 'value' => ''));
+        $form = $control->getForm();
+          
+        $this->assertTrue(is_array($form));
+        $this->assertTrue(array_key_exists('myloader', $form));
+        $this->assertEquals('<input type="file" name="TestControl[myloader]" class="form-control" value="" id="TestControl_myloader" />', $form['myloader']);
+    }
+    
     public function testLinkControl() {
         
         $model = new TestModel();
