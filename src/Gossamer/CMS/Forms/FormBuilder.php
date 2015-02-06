@@ -14,17 +14,17 @@ use Gossamer\CMS\Forms\FormBuilderInterface;
  */
 class FormBuilder {
     
-    private $logger = null;
+    protected $logger = null;
     
-    private $form = null;
+    protected $form = array();
     
-    private $factory = null;
+    protected $factory = null;
     
-    private $results = null;
+    protected $results = null;
     
-    private $formWrapperName = null;
+    protected $formWrapperName = null;
     
-    private $model = null;
+    protected $model = null;
     
     public function __construct(Logger $logger, FormBuilderInterface $model = null) {
         $this->logger = $logger;
@@ -65,15 +65,15 @@ class FormBuilder {
         } else {
             $this->form[$fieldName] = $this->addValidationResult($fieldName, $control->build($fieldName, $params, $this->results, $this->formWrapperName));
         }
-        
+      
         return $this;
     }
     
-    private function getControl($controlType) {
+    protected function getControl($controlType) {
         return $this->getFactory()->getControl($controlType);
     }
     
-    private function getFactory() {
+    protected function getFactory() {
         if(is_null($this->factory)) {
             $this->factory = new ControlFactory();
         }

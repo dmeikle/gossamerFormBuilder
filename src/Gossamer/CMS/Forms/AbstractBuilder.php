@@ -2,8 +2,6 @@
 
 
 namespace Gossamer\CMS\Forms;
-
-
 /**
  *
  * @author davem

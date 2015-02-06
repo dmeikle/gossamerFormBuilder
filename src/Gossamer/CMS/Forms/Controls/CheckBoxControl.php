@@ -12,18 +12,11 @@ use Gossamer\CMS\Forms\Controls\AbstractMultiChoiceControl;
  */
 class CheckBoxControl extends AbstractMultiChoiceControl {
     
-    private $textBox = '<input type="checkbox" name="|NAME|" value="|VALUE|"|PARAMS| />';
     
     public function build($name, array $params = null, &$validationResults = null, $wrapperName = null) {
-         if(!is_null($wrapperName)) {
-            $textBox = str_replace('|NAME|', $wrapperName . '[' . $name . ']', $this->textBox);
-        } else {
-            $textBox = str_replace('|NAME|', $name, $this->textBox);
-        }
+        $this->textBox = '<input type="checkbox" name="|NAME|" value="|VALUE|"|PARAMS| /> |TEXT|';
         
-        $this->buildParams($name, $textBox, $params, $validationResults, $wrapperName);
-        
-        return $textBox;
+        return parent::build($name, $params, $validationResults, $wrapperName);
     }
 
     

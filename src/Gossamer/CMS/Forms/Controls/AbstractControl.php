@@ -9,7 +9,30 @@ namespace Gossamer\CMS\Forms\Controls;
  */
 abstract class AbstractControl {
     
+    protected $childControls = null;
+    
+    public function addChild(AbstractControl $control) {
+        if(is_null($this->childControls)) {
+            $this->childControls = array();
+        }
+        
+        $this->childControls = $control;
+    }
+    
+    public function hasChildren() {
+        return is_array($this->childControls) && count($this->childControls) > 0;
+    }
+    
+    public function getChildControls() {
+        if(is_null($this->childControls)) {
+            $this->childControls = array();
+        }
+        
+        return $this->childControls;
+    }
+    
     public abstract function build($name, array $params = null, &$validationResults = null, $wrapperName = null);
+    
     
     protected function buildParams($fieldName, &$control, array $params = null, &$validationResults = null, $wrapperName = null) {
         if(is_null($params)) {   
@@ -28,6 +51,10 @@ abstract class AbstractControl {
         $paramList = '';
         
         foreach($params as $key => $param) {
+            if(is_array($param)) {
+                //could be building a controller that needs further drill down
+                continue;
+            }
             if($key == 'value') {
                 if(strpos($control, '|VALUE|') === false) {
                     $paramList .= " value=\"" . $this->formatValue($fieldName, $param, $validationResults) . "\"";

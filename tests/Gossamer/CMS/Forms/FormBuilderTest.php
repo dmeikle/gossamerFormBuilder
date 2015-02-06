@@ -251,14 +251,15 @@ class FormBuilderTest extends \tests\BaseTest{
             'test_value' => 'some fail value');
         $builder->addValidationResults($results);
         
-        $control = $builder->add('test2', 'radio', array('values' => array('dave smith', 'dave meikle')))
-                ->add('test2', 'radio', array('value' => 'dave meikle'))
+        $control = $builder->add('test3', 'radio', array('values' => array('dave smith', 'dave meikle')))
+                ->add('test2', 'radio', array('values' => array('dave meikle')))
+                ->add('test4', 'check', array('value' => 'dave meikle'))
                 ->add('test1','text', array('value' => 'dave meikle', 'id' => 'test1'))
                 ->add('firstname', 'text', array( 'id' => 'test1'))
                 ->add('lastname', 'text');
         
         $form = $control->getForm();
-       
+      
         $this->assertTrue(is_array($form));
         $this->assertTrue(array_key_exists('test2', $form));
         $this->assertContains('dave meikle', $form['test2']);
