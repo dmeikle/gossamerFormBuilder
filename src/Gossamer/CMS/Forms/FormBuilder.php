@@ -26,7 +26,7 @@ class FormBuilder {
     
     protected $model = null;
     
-    public function __construct(Logger $logger, FormBuilderInterface $model = null) {
+    public function __construct(Logger $logger = null, FormBuilderInterface $model = null) {
         $this->logger = $logger;
         if(!is_null($model)) {
             $this->formWrapperName = $model->getFormWrapper();
