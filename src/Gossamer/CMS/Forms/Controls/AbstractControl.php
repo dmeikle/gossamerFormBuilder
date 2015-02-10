@@ -108,13 +108,13 @@ abstract class AbstractControl {
       
         if(!is_null($wrapperName)) {
             if($isQuestionBuilder) {
-                $box = str_replace('|NAME|', $wrapperName . '[' . $name . '][' . $params['id'] . ']' . (($isControlArray) ? '[]' : ''), $box);
+                $box = str_replace('|NAME|', $wrapperName . '[' . $name . '][' . $this->getParamsId($params) . ']' . (($isControlArray) ? '[]' : ''), $box);
             }else{
                 $box = str_replace('|NAME|', $wrapperName . '[' . $name . ']' . (($isControlArray) ? '[]' : ''), $box);
             }
         } else {
             if($isQuestionBuilder){
-                $box = str_replace('|NAME|', $name . '[' . $params['id'] . ']' . (($isControlArray) ? '[]' : ''), $box);
+                $box = str_replace('|NAME|', $name . '[' . $this->getParamsId($params) . ']' . (($isControlArray) ? '[]' : ''), $box);
             }else{
                 $box = str_replace('|NAME|', $name . (($isControlArray) ? '[]' : ''), $box);
             }
@@ -122,6 +122,15 @@ abstract class AbstractControl {
         
     }
     
+    protected function getParamsId($params) {
+        if(array_key_exists('id', $params)) {
+            return $params['id'];
+        }
+        if(array_key_exists('Questions_id', $params)) {
+            return $params['Questions_id'];
+        }
+        return '';
+    }
     protected function formatValue($fieldName, $value, &$validationResults) {
         if(is_array($validationResults) && array_key_exists($fieldName . '_value', $validationResults)) {
             return $validationResults[$fieldName . '_value'];

@@ -27,11 +27,12 @@ class QuestionBuilderTest extends \tests\BaseTest{
     
     private function getTextboxQuestion() {
         return array(
-            'id' => '1',
-            'Questions_id' => '1',
+            'id' => '5',
+            'Questions_id' => '5',
             'QuestionTypes_id' => '4',
             'type' => 'Single Textbox',
-            'question' => 'What is your name?'
+            'question' => 'What is your name?',
+            'code' => 'text'
         );
     }
 }
