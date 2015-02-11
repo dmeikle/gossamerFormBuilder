@@ -149,7 +149,7 @@ abstract class AbstractControl {
     }
     
     protected function formatValue($fieldName, $value, &$validationResults) {
-        print_r($value);
+       
         if(is_array($validationResults) && array_key_exists($fieldName . '_value', $validationResults)) {
             return $validationResults[$fieldName . '_value'];
         }
