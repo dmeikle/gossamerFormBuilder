@@ -55,7 +55,7 @@ abstract class AbstractControl {
                 //could be building a controller that needs further drill down
                 continue;
             }
-            if($key == 'value') {
+            if('0' != $key && $key == 'value') {
                 if(strpos($control, '|VALUE|') === false) {
                     $paramList .= " value=\"" . $this->formatValue($fieldName, $param, $validationResults) . "\"";
                 } else {
