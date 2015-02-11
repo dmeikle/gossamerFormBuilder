@@ -22,7 +22,7 @@ class AddChildControlsTest extends \tests\BaseTest{
         $form = $control->getForm();
 
         $this->assertTrue(is_array($form));
-        $this->assertTrue(strpos($form[0], 'answer #1 here <input type="radio" name="TestControl[question][1][]" value="3" id="TestControl_question_3_3" />') > 0);
+        $this->assertTrue(strpos($form[0], 'answer #1 here <input type="radio" name="TestControl[question][1][]" value="3" checked id="TestControl_question_3_3" />') > 0);
     }
     
     public function testCheckboxControl() {
@@ -31,7 +31,7 @@ class AddChildControlsTest extends \tests\BaseTest{
         $builder = new QuestionBuilder($this->getLogger(), $model);
         $control = $builder->add('question', 'check', array('class' => 'btn-xs',  'question' => 'this is the question', 'params' => $this->getCheckboxQuestion()));
         $form = $control->getForm();
-        
+       
         $this->assertTrue(is_array($form));
         $this->assertTrue(strpos($form[0], '<input type="checkbox" name="TestControl[question][1][]" value="1" id="TestControl_question_1_1" /> this is my second selection') > 0);
     
@@ -48,12 +48,14 @@ class AddChildControlsTest extends \tests\BaseTest{
                 array(
                     'id' => '3',
                     'Answers_id' => '3',
-                    'answer' => 'answer #1 here'
+                    'answer' => 'answer #1 here',
+                    'responseId' => '3'
                     ),
                 array(
                     'id' => '1',
                     'Answers_id' => '1',
-                    'answer' => 'answer #2 here'
+                    'answer' => 'answer #2 here',
+                    'responseID' => null
                     )                
             )
         );
@@ -68,7 +70,8 @@ class AddChildControlsTest extends \tests\BaseTest{
                 array(
                     'id' => '3',
                     'Answers_id' => '3',
-                    'answer' => 'this is my first selection'
+                    'answer' => 'this is my first selection',
+                    'responseId' => '3'
                     ),
                 array(
                     'id' => '1',

@@ -112,6 +112,12 @@ abstract class AbstractMultiChoiceControl  extends AbstractControl{
             }
             unset($params['Answers_id']);
         }
+        
+        if(array_key_exists('responseId', $params) && $params['responseId'] != null) {
+            $textBox = str_replace('|PARAMS|', ' checked|PARAMS|', $textBox);
+            unset($params['responseId']);
+        }
+        
         $params['id'] = $id;
         
         $this->buildParams($name, $textBox, $params, $validationResults, $wrapperName);

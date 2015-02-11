@@ -46,6 +46,8 @@ abstract class AbstractControl {
             return;
         }
        
+        $this->setAnswerValue($control, $params);
+        
         $valueSet = false;
         $idSet = false;        
         $paramList = '';
@@ -96,6 +98,18 @@ abstract class AbstractControl {
             $control = $retval;
         }
     }
+    protected function setAnswerValue(&$box, array $params) {
+       
+        if(array_key_exists('params', $params) && array_key_exists('answers', $params['params']) && array_key_exists('openResponse', $params['params']['answers'])) {
+           
+            if(strpos($box, '|VALUE|') !== false) {
+                $box = str_replace('|VALUE|', $params['params']['answers']['openResponse'], $box);
+            } else {
+                $box = str_replace('|PARAMS|', ' value="' . $params['params']['answers']['openResponse'] . '"|PARAMS|', $box);
+            }
+            unset($params['answers']);
+        }
+    }
     
     protected function getControlName($name, &$box, $params = null, $wrapperName = null, $isQuestionBuilder = false) {
         $isControlArray = false;
@@ -131,7 +145,9 @@ abstract class AbstractControl {
         }
         return '';
     }
+    
     protected function formatValue($fieldName, $value, &$validationResults) {
+        print_r($value);
         if(is_array($validationResults) && array_key_exists($fieldName . '_value', $validationResults)) {
             return $validationResults[$fieldName . '_value'];
         }
