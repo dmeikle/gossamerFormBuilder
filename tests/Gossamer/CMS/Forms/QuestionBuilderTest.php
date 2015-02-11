@@ -20,7 +20,7 @@ class QuestionBuilderTest extends \tests\BaseTest{
         $builder = new QuestionBuilder($this->getLogger(), $model);
         $control = $builder->add('question', 'text', array('class' => 'btn-xs',  'params' => $this->getTextboxQuestion()));
         $form = $control->getForm();
-
+print_r($form);
         $this->assertTrue(is_array($form));
        
     }
@@ -34,7 +34,9 @@ class QuestionBuilderTest extends \tests\BaseTest{
             'question' => 'What is your name?',
             'code' => 'text',
             'answers' => array(
-                'openResponse' => 'another response'
+                array(
+                    'openResponse' => 'another response'
+                )                
             )
         );
     }

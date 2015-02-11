@@ -99,14 +99,16 @@ abstract class AbstractControl {
         }
     }
     protected function setAnswerValue(&$box, array $params) {
-       
-        if(array_key_exists('params', $params) && array_key_exists('answers', $params['params']) && array_key_exists('openResponse', $params['params']['answers'])) {
-           
-            if(strpos($box, '|VALUE|') !== false) {
-                $box = str_replace('|VALUE|', $params['params']['answers']['openResponse'], $box);
-            } else {
-                $box = str_replace('|PARAMS|', ' value="' . $params['params']['answers']['openResponse'] . '"|PARAMS|', $box);
+      
+        if(array_key_exists('params', $params) && array_key_exists('answers', $params['params'])) {
+            if(count($params['params']['answers']) > 0) {
+                if(strpos($box, '|VALUE|') !== false) {
+                    $box = str_replace('|VALUE|', $params['params']['answers'][0]['openResponse'], $box);
+                } else {
+                    $box = str_replace('|PARAMS|', ' value="' . $params['params']['answers'][0]['openResponse'] . '"|PARAMS|', $box);
+                }
             }
+            
             unset($params['answers']);
         }
     }
