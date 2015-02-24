@@ -30,7 +30,7 @@ class DivControl extends AbstractControl{
         
         $this->buildParams($name, $textBox, $params, $results, $wrapperName);
         
-        return $textBox;
+        return str_replace('|VALUE|', '', $textBox);
     }
     
 }

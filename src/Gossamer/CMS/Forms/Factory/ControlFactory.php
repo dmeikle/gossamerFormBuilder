@@ -26,6 +26,7 @@ class ControlFactory {
     const SPAN = 'span';
     const PLACEHOLDER = 'placeholder';
     const LINK = 'link';
+    const DIV = 'div';
     
     private $namingConvention = array(
         'text' => 'TextBox',
@@ -42,7 +43,8 @@ class ControlFactory {
         'span' => 'Span',
         'placeholder' => 'PlaceHolder',
         'hidden' => 'Hidden',
-        'link' => 'Link'
+        'link' => 'Link',
+        'div' => 'Div'
     );
 
     public function getControl($controlName) {
