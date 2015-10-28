@@ -53,7 +53,9 @@ class RadioButtonControlTest  extends \tests\BaseTest{
         $this->assertTrue(array_key_exists('en_US', $form['test2']['locales']));
     }
     
-   
+   /**
+    * @group radio
+    */
     public function testAddRadioButton() {
         $builder = new FormBuilder($this->getLogger());
         $results = array('firstname' => 'VALIDATION_INVALID_EMAIL',
@@ -66,9 +68,11 @@ class RadioButtonControlTest  extends \tests\BaseTest{
                 ->add('test2', 'radio', array('value' => 'dave meikle'))
                 ->add('test1','text', array('value' => 'dave meikle', 'id' => 'test1'))
                 ->add('firstname', 'text', array( 'id' => 'test1'))
+                ->add('gender', 'radio', array('values' => array(array('text' => 'male', 'value' => 'm'),array('text' => 'female', 'value' => 'f'))))
                 ->add('lastname', 'text');
         
         $form = $control->getForm();
+     print_r($form);
      
         $this->assertTrue(is_array($form));
         $this->assertTrue(array_key_exists('test2', $form));

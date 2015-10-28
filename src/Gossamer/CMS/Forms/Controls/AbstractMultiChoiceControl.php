@@ -65,6 +65,7 @@ abstract class AbstractMultiChoiceControl  extends AbstractControl{
         
         if(array_key_exists('values', $params)) {
             foreach($params['values'] as $param) {
+               
                 $retval .= str_replace('|VALUE|', $this->formatValue($fieldName, $param, $validationResults), $control). "\r\n";
             }
             $control = $retval;
@@ -73,8 +74,7 @@ abstract class AbstractMultiChoiceControl  extends AbstractControl{
                 $retval .= str_replace('|VALUE|', $this->formatValue($fieldName, $params['value'], $validationResults), $control). "\r\n";
                 $control = $retval;
             }
-        }       
-        
+        } 
     }
     
     public function build($name, array $params = null, &$validationResults = null, $wrapperName = null, $isQuestionBuilder = false) {
