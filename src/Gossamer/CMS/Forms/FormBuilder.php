@@ -57,14 +57,13 @@ class FormBuilder {
                 $this->form[$fieldName]['locales'][$locale['locale']] = $this->parseVariables($this->addValidationResult($fieldName, $control->build($localeFieldName, $localeParams, $this->results, $this->formWrapperName)), $fieldName, $locale['locale']);
             }
         } else {
-            $this->form[$fieldName] = $this->parseVariables($this->addValidationResult($fieldName, $control->build($fieldName, $params, $this->results, $this->formWrapperName)));
+            $this->form[$fieldName] = $this->parseVariables($this->addValidationResult($fieldName, $control->build($fieldName, $params, $this->results, $this->formWrapperName)), $fieldName);
         }
 
         return $this;
     }
 
     protected function parseVariables($controlString, $name, $locale = null) {
-        echo $controlString . "\r\n$name\r\n$locale";
 
         $tmp = str_replace('%NAME%', $name, $controlString);
         if (!is_null($locale)) {
